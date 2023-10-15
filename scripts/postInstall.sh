@@ -7,7 +7,7 @@ sleep 60s;
 
 target=$(docker-compose port web 3000)
 
-curl https//${target}/api/admin/accounts/create \
+curl http//${target}/api/admin/accounts/create \
   -H 'accept: */*' \
   -H 'accept-language: fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7,he;q=0.6' \
   -H 'cache-control: no-cache' \
