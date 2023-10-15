@@ -7,11 +7,27 @@ ports:
     public: true
     path: "/"
     isAuth: false
+  - protocol: "HTTPS"
+    targetProtocol: "HTTP"
+    listeningPort: "2370"
+    targetPort: "39736"
+    targetIP: "172.17.0.1"
+    public: true
+    path: "/"
+    isAuth: false
+  - protocol: "TCP"
+    targetProtocol: "TCP"
+    listeningPort: "58422"
+    targetIP: "172.17.0.1"
+    targetPort: "43282"
+    public: true
 environments:
   - key: "ADMIN_EMAIL"
     value: "[EMAIL]"
   - key: "ADMIN_PASSWORD"
     value: "random_password"
+  - key: "DOMAIN"
+    value: "[CI_CD_DOMAIN]"
   - key: "POSTGRES_PASSWORD"
     value: "random_password"
   - key: "POSTGRES_USER"
@@ -39,5 +55,9 @@ lifeCycleConfig:
 webUI:
   - url: "https://[CI_CD_DOMAIN]"
     label: "Firefish"
+    login: "[ADMIN_EMAIL]"
+    password: "[ADMIN_PASSWORD]"
+  - url: "https://[CI_CD_DOMAIN]:2370"
+    label: "PgAdmin"
     login: "[ADMIN_EMAIL]"
     password: "[ADMIN_PASSWORD]"
