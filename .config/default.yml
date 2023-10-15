@@ -8,7 +8,7 @@
 #───┘ URL └─────────────────────────────────────────────────────
 
 # Final accessible URL seen by a user.
-url: DOMAIN
+url: https://DOMAIN
 
 #   ┌───────────────────────┐
 #───┘ Port and TLS settings └───────────────────────────────────
