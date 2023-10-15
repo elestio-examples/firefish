@@ -13,7 +13,7 @@ Deploy Firefish server with CI/CD on Elestio
 You can open Firefish UI here:
 
     URL: https://[CI_CD_DOMAIN]
-    email: [ADMIN_EMAIL]
+    login: admin
     password: [ADMIN_PASSWORD]
 
 You can open pgAdmin web UI here:
