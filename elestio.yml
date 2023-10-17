@@ -22,6 +22,8 @@ ports:
     targetPort: "43282"
     public: true
 environments:
+  - key: "SOFTWARE_VERSION_TAG"
+    value: "v1.0.3"
   - key: "ADMIN_EMAIL"
     value: "[EMAIL]"
   - key: "ADMIN_PASSWORD"
