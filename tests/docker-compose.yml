@@ -1,0 +1,58 @@
+version: "3.3"
+
+services:
+  web:
+    image: elestio4test/firefish:${SOFTWARE_VERSION_TAG}
+    restart: always
+    depends_on:
+      - db
+      - redis
+      - meilisearch
+    ports:
+      - "172.17.0.1:54824:3000"
+    environment:
+      NODE_ENV: production
+    volumes:
+      - ./storage/files:/firefish/files
+      - ./.config:/firefish/.config:ro
+
+  redis:
+    image: elestio/redis:7.0
+    restart: always
+    volumes:
+      - ./storage/redis:/data
+
+  db:
+    image: elestio/postgres:15
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - ./storage/db:/var/lib/postgresql/data
+    ports:
+      - 172.17.0.1:43282:5432
+
+  ### Only one of the below should be used.
+  ### Meilisearch is better overall, but resource-intensive. Sonic is a very light full text search engine.
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.1.1
+    restart: always
+    environment:
+      - MEILI_ENV=${MEILI_ENV:-development}
+    ports:
+      - "7700:7700"
+    volumes:
+      - ./storage/meili_data:/meili_data
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${ADMIN_PASSWORD}
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      - "172.17.0.1:39736:8080"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
