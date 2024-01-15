@@ -14,7 +14,7 @@ services:
       NODE_ENV: production
     volumes:
       - ./storage/files:/firefish/files
-      - ./.config:/firefish/.config:ro
+      - ${folderName}/.config:/firefish/.config:ro
 
   redis:
     image: elestio/redis:7.0
