@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   web:
-    image: registry.joinfirefish.org/firefish/firefish:v1.0.3
+    image: registry.joinfirefish.org/firefish/firefish:beta-amd64
     restart: always
     depends_on:
       - db
