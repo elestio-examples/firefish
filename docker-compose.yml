@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   web:
-    image: registry.joinfirefish.org/firefish/firefish:beta-amd64
+    image: registry.firefish.dev/firefish/firefish:latest
     restart: always
     depends_on:
       - db
@@ -23,7 +23,7 @@ services:
       - ./storage/redis:/data
 
   db:
-    image: elestio/postgres:15
+    image: docker.io/groonga/pgroonga:3.1.8-alpine-16-slim
     restart: always
     env_file:
       - ./.env

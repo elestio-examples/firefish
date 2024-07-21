@@ -20,3 +20,5 @@ cat <<EOT > ./servers.json
     }
 }
 EOT
+
+docker-compose up db --detach && sleep 5 && docker-compose exec db sh -c 'psql --user="${POSTGRES_USER}" --dbname="${POSTGRES_DB}" --command="CREATE EXTENSION pgroonga;"'
